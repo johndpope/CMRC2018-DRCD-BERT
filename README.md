@@ -39,7 +39,7 @@ Check: https://github.com/google-research/bert/blob/master/run_squad.py
 ### Step 3: Training
 Then, we use the following script for training. We take CMRC 2018 dataset and multi-lingual BERT as an example.
 ```
-python run_cmrc_drcd_baseline.py \
+python run_cmrc2018_drcd_baseline.py \
 --vocab_file=${PATH_TO_BERT}/multi_cased_L-12_H-768_A-12/vocab.txt \
 --bert_config_file=${PATH_TO_BERT}/multi_cased_L-12_H-768_A-12/bert_config.json \
 --init_checkpoint=${PATH_TO_BERT}/multi_cased_L-12_H-768_A-12/bert_model.ckpt \
@@ -58,6 +58,13 @@ python run_cmrc_drcd_baseline.py \
 --use_tpu=False
 ```
 
+### Step 4: Evaluation
+We use official evaluation script for CMRC 2018 and DRCD.
+Note that, as DRCD official does not provide evaluation script, we also use `cmrc2018_evaluate.py` for DRCD.
+
+`python cmrc2018_evaluate.py cmrc2018_dev.json predictions.json`
+
+
 ## Baseline Results
 We provide both `BERT-Chinese` and `BERT-multilingual` baselines.
 
@@ -74,7 +81,7 @@ We provide both `BERT-Chinese` and `BERT-multilingual` baselines.
 | Z-Reader (single model) | 79.776 | 92.696 | 74.178 | 88.145 | 13.889 | 37.422 | - |
 | [SRC->DS(±) (Yang et al., 2019)](https://arxiv.org/abs/1904.06652) | 49.2 | 65.4 | - | - | - | - | - |
 
-> Leaderboard: https://hfl-rc.github.io/cmrc2018/open_challenge/
+> Leaderboard: https://hfl-rc.github.io/cmrc2018/open_challenge/ </br>
 > Note that, some of the previous submission are using development set for training as well.
 
 
